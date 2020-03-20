@@ -11,6 +11,7 @@ public class MainActivity extends LoggingActivity {
     private Button trueButton;
     private Button falseButton;
     private Button nextButton;
+    private Button prevButton;
     private TextView questionView;
 
     private Question[] mQuestionBank = new Question[] {
@@ -32,6 +33,7 @@ public class MainActivity extends LoggingActivity {
         trueButton = findViewById(R.id.true_button);
         falseButton = findViewById(R.id.false_button);
         nextButton = findViewById(R.id.next_button);
+        prevButton = findViewById(R.id.prev_button);
         questionView = findViewById(R.id.question);
 
         applyCurrentQuestion();
@@ -61,6 +63,19 @@ public class MainActivity extends LoggingActivity {
                 }
 
                 // apply question
+                applyCurrentQuestion();
+            }
+        });
+
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentQuestionIndex == 0) {
+                    currentQuestionIndex = mQuestionBank.length - 1;
+                }else {
+                    currentQuestionIndex--;
+                }
+
                 applyCurrentQuestion();
             }
         });
